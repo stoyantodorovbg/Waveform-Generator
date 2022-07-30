@@ -1,0 +1,24 @@
+{
+  "name": "stoyantodorov/ffmpeg-converter",
+  "license": "MIT",
+  "type": "project",
+  "description": "Converts raw data from ffmpeg output to JSON format.",
+  "keywords": [
+      "PHP"
+  ],
+  "authors": [
+      {
+          "name": "Stoyan Todorov",
+          "email": "stoyan07291@gmail.com",
+          "role": "Developer"
+      }
+  ],
+  "require": {
+      "php": "^8.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "Src\\": "src/"
+    }
+  }
+}

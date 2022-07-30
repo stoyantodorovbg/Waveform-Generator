@@ -2,7 +2,6 @@
 
 namespace Src\Connectors;
 
-use Src\Connections\ConnectionInterface;
 use Src\Resources\ResourceInterface;
 
 interface ConnectorInterface
@@ -10,18 +9,17 @@ interface ConnectorInterface
     /**
      * Connect to resource
      *
-     * @param ConnectionInterface $connection
      * @param string $connectionName
+     * @param array $settings = []
      * @return ResourceInterface
      */
-    public function connect(ConnectionInterface $connection, string $connectionName): ResourceInterface;
+    public function connect(string $connectionName, array $settings = []): ResourceInterface;
 
     /**
-     * Close connection to resource
+     * Clear connection to resource
      *
-     * @param ConnectionInterface $connection
      * @param string $connectionName
      * @return mixed
      */
-    public function close(ConnectionInterface $connection, string $connectionName): void;
+    public function clearConnection(string $connectionName): void;
 }

@@ -6,17 +6,14 @@ interface ResourceInterface
 {
     /**
      * Convert data in specific format to array
-     *
-     * @param mixed $input
-     * @return array
      */
-    public function readData(mixed $input): array;
+    public function readData(): array;
 
     /**
      * Convert an array to data in specific format
      *
      * @param array $input
-     * @return mixed
+     * @return void
      */
-    public function writeData(array $input): mixed;
+    public function writeData(array $input): void;
 }

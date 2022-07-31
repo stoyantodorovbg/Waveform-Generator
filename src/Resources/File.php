@@ -27,19 +27,20 @@ class File extends Resource
     public function __construct(protected array $settings) {}
 
     /**
-     * Convert data from specific format to array
+     * Read data from a resource as array
      *
      * @return array
      */
     public function readData(): array
     {
-        $this->setFilePath('input');
+        $this->setFilePath('inputPath');
         $this->setFileMode('r');
         $this->connect();
 
         $result = [];
-        foreach ($this->resource as $line) {
-            $result[] = $line;
+
+        while (!feof($this->resource)) {
+            $result[] = fgets($this->resource);
         }
 
         $this->disconnect();
@@ -48,18 +49,18 @@ class File extends Resource
     }
 
     /**
-     * Convert an array to data in specific format
+     * Write string in a resource
      *
-     * @param array $input
+     * @param string $input
      * @return void
      */
-    public function writeData(array $input): void
+    public function writeData(string $input): void
     {
-        $this->setFilePath('input');
+        $this->setFilePath('outputPath');
         $this->setFileMode('w');
         $this->connect();
 
-        // write data
+        fwrite($this->resource, $input);
 
         $this->disconnect();
     }

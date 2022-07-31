@@ -2,16 +2,21 @@
 
 namespace Src\Converters;
 
-class TextToArray extends DataConverter
+use Src\Converters\Interfaces\ConvertTextToArrayInterface;
+
+class TextToArray implements ConvertTextToArrayInterface
 {
     /**
-     * Convert data from one format to another
+     * Convert text to array
      *
-     * @param mixed $input
-     * @return mixed
+     * @param string $input
+     * @param array $settings = []
+     * @return array
      */
-    public function convert(mixed $input): mixed
+    public function convert(string $input, array $settings = []): array
     {
-        return $input;
+        $separator = $settings['separator'] ?? "\n";
+
+        return explode($separator, $input);
     }
 }

@@ -40,7 +40,9 @@ class Connection implements ConnectionInterface
      */
     public function changeSettings(array $settings, string $connectionName): void
     {
-        $this->settings[$connectionName] = $settings;
+        foreach($settings as $key => $value) {
+            $this->settings[$connectionName][$key] = $value;
+        }
     }
 
     protected function setSettings($connectionName): void

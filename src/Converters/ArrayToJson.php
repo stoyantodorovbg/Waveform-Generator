@@ -2,16 +2,21 @@
 
 namespace Src\Converters;
 
-class ArrayToJson extends DataConverter
+use JsonException;
+use Src\Converters\Interfaces\ConvertArrayToJsonInterface;
+
+class ArrayToJson implements ConvertArrayToJsonInterface
 {
     /**
-     * Convert data from one format to another
+     * Convert array to json
      *
-     * @param mixed $input
-     * @return mixed
+     * @param array $input
+     * @param array $settings = []
+     * @return string|false
+     * @throws JsonException
      */
-    public function convert(mixed $input): mixed
+    public function convert(array $input, array $settings = []): string|false
     {
-        return $input;
+        return json_encode($input, JSON_THROW_ON_ERROR);
     }
 }

@@ -5,15 +5,15 @@ namespace Src\Resources;
 interface ResourceInterface
 {
     /**
-     * Convert data in specific format to array
+     * Read data from a resource as array
      */
     public function readData(): array;
 
     /**
-     * Convert an array to data in specific format
+     * Write string in a resource
      *
-     * @param array $input
+     * @param string $input
      * @return void
      */
-    public function writeData(array $input): void;
+    public function writeData(string $input): void;
 }

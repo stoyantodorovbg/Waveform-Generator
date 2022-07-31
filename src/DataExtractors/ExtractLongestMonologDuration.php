@@ -14,14 +14,57 @@ class ExtractLongestMonologDuration implements FloatFromArrayInterface
      */
     public function extractFloatFromArray(array $input): float|bool
     {
-        $longestMonologDuration = 0;
+        unset($input[0][count($input[0]) - 1], $input[1][count($input[1]) - 1]);
 
-        foreach ($input as $item) {
-            if (count($item) < 2) {
-                continue;
+        $longestMonologDuration = 0;
+        $monologStart = 0;
+        $resetMonologStart = false;
+
+        foreach ($input[0] as $itemFirst) {
+            if ($resetMonologStart) {
+                $monologStart = $itemFirst[0];
             }
 
-            $monologDuration = $item[1] - $item[0];
+            $monologDuration = $itemFirst[1] - $monologStart;
+
+            foreach ($input[1] as $itemSecond) {
+                if ($itemSecond[0] < $monologStart) {
+                    continue;
+                }
+
+                //greater than monolog start && less than next pause && interrupt other speaker
+                if ($itemSecond[0] <= $itemFirst[1] && $itemSecond[0] >= $itemFirst[0]) {
+                    $monologDuration -= $itemFirst[1] - $itemSecond[0];
+                    if ($longestMonologDuration < $monologDuration) {
+                        $longestMonologDuration = $monologDuration;
+                    }
+                    $monologDuration = 0;
+
+                    if ($itemSecond[1] < $itemFirst[1]) {
+                        $monologStart = $itemSecond[1];
+                        $monologDuration = $itemFirst[1] - $monologStart;
+                        if ($longestMonologDuration < $monologDuration) {
+                            $longestMonologDuration = $monologDuration;
+                        }
+
+                        $resetMonologStart = true;
+
+                        continue;
+                    }
+                    $resetMonologStart = true;
+
+                    break;
+                }
+
+                //greater than monolog start && less than last speech start
+                if ($itemSecond[0] <= $itemFirst[1]) {
+                    $resetMonologStart = true;
+                    break;
+                }
+
+                break;
+            }
+
             if ($longestMonologDuration < $monologDuration) {
                 $longestMonologDuration = $monologDuration;
             }

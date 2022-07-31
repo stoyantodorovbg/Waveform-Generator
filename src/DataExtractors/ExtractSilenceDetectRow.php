@@ -14,6 +14,8 @@ class ExtractSilenceDetectRow implements StringFromStringExtractorInterface
      */
     public function extractStringFromString(string $input): string|bool
     {
+        $input = trim($input);
+
         if (str_starts_with($input, '[silencedetect @ ') && is_numeric($input[strlen($input) - 1])) {
             return $input;
         }

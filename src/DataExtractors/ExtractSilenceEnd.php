@@ -15,7 +15,8 @@ class ExtractSilenceEnd implements FloatFromStringExtractorInterface
     public function extractFloatFromString(string $input): float|bool
     {
         if (str_contains($input, 'silence_end: ')) {
-            $data = explode('silence_end: ', $input)[0];
+            $data = explode('|', $input)[0];
+
             return (float) trim(explode('silence_end: ', $data)[1], ' ');
         }
 

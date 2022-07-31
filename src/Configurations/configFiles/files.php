@@ -1,8 +1,10 @@
 <?php
 
+$baseDir = dirname(__DIR__, 3);
+
 return [
     'silenceDetect' => [
-        'input'  => dirname(__DIR__, 2),
-        'output' => dirname(__DIR__, 2),
+        'inputPath'  => $baseDir . '/input/default.txt',
+        'outputPath' => $baseDir . '/output/default.txt',
     ],
 ];

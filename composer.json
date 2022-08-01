@@ -1,8 +1,8 @@
 {
-  "name": "stoyantodorov/ffmpeg-converter",
+  "name": "stoyantodorov/waveform-generator",
   "license": "MIT",
   "type": "project",
-  "description": "Converts raw data from ffmpeg output to JSON format.",
+  "description": "Generates waveform data from ffmpeg output.",
   "keywords": [
       "PHP"
   ],

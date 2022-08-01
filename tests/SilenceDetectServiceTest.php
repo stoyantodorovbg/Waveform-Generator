@@ -72,6 +72,7 @@ final class SilenceDetectServiceTest extends TestCase
     /**
      * Get result from detectFromFiles method
      *
+     * @param array $settings
      * @return array
      */
     protected function getResultFromFiles(array $settings = []): array

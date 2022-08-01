@@ -2,8 +2,6 @@
 
 namespace Src\Resources;
 
-use Src\Connections\ConnectionInterface;
-
 class File extends Resource
 {
     /**

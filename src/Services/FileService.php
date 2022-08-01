@@ -10,6 +10,9 @@ use Src\Services\Interfaces\FileServiceInterface;
 
 class FileService implements FileServiceInterface
 {
+    /**
+     * @var ConnectorInterface
+     */
     protected ConnectorInterface $connector;
 
     public function __construct()

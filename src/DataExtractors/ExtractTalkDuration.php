@@ -14,12 +14,12 @@ class ExtractTalkDuration implements FloatFromArrayInterface
      */
     public function extractFloatFromArray(array $input): float|bool
     {
+        // The largest point in the dataset represents the total duration of the call.
+        unset($input[count($input) - 1]);
         $talkDuration = 0;
 
         foreach ($input as $item) {
-            if (count($item) === 2) {
-                $talkDuration += $item[1] - $item[0];
-            }
+            $talkDuration += $item[1] - $item[0];
         }
 
         return $talkDuration ?: false;

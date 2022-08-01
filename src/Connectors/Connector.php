@@ -40,17 +40,4 @@ class Connector implements ConnectorInterface
 
         return $this->resource;
     }
-
-    /**
-     * Clear connection to resource
-     *
-     * @param string $connectionName
-     * @return void
-     */
-    public function clearConnection(string $connectionName): void
-    {
-        if ($this->resource) {
-            unset($this->resource);
-        }
-    }
 }

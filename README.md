@@ -7,4 +7,4 @@
 4. The result will be printed in the console and saved in ```output/silence-detect.json```.
 
 ## Testing:
-Run ```./vendor/bin/phpunit tests```
+```./vendor/bin/phpunit tests```

@@ -48,6 +48,14 @@ final class SilenceDetectServiceTest extends TestCase
         $result = $this->getResultFromFiles($settings);
 
         self::assertSame(35.53, $result['user_talk_percentage']);
+
+        $settings = [
+            'customer' => ['inputPath' => $baseDir . '/tests/input/customer-channel2.txt'],
+            'user'     => ['inputPath' => $baseDir . '/tests/input/user-channel2.txt'],
+        ];
+        $result = $this->getResultFromFiles($settings);
+
+        self::assertSame(53.72, $result['user_talk_percentage']);
     }
 
     /** @test */
@@ -66,6 +74,15 @@ final class SilenceDetectServiceTest extends TestCase
         $result = $this->getResultFromFiles($settings);
 
         self::assertSame(7.34, $result['longest_user_monologue']);
+        self::assertSame(12.93, $result['longest_customer_monologue']);
+
+        $settings = [
+            'customer' => ['inputPath' => $baseDir . '/tests/input/customer-channel2.txt'],
+            'user'     => ['inputPath' => $baseDir . '/tests/input/user-channel2.txt'],
+        ];
+        $result = $this->getResultFromFiles($settings);
+
+        self::assertSame(8.83, $result['longest_user_monologue']);
         self::assertSame(12.93, $result['longest_customer_monologue']);
     }
 
